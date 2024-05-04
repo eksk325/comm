@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply mx-1 text-white px-3 py-1;
+  }
+
+  .nav-link:hover {
+    @apply bg-blue-50/20 transition duration-300 rounded-xl;
+  }
+}
+
+.center-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+body {
+  user-select: none;
+}
