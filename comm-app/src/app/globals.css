@@ -10,11 +10,11 @@
 
 @layer components {
   .nav-link {
-    @apply mx-1 text-white px-3 py-1 rounded-xl;
+    @apply mx-1 text-zinc-900 px-3 py-1 rounded-xl;
   }
 
   .nav-link-active {
-    @apply bg-blue-50/20 transition duration-300;
+    @apply text-blue-800 transition duration-300;
   }
 
   .nav-link:hover {
@@ -31,4 +31,5 @@
 
 body {
   user-select: none;
+  overflow: hidden;
 }

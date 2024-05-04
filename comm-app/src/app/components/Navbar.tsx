@@ -8,16 +8,19 @@ function Navbar() {
   const pathName = usePathname();
 
   // Helper function to determine if the link is active
-  const isActive = (path) => (pathName === path ? "underline" : "");
+  const isActive = (path: string) => (pathName === path ? "underline" : "");
 
   return (
-    <nav className="sticky top-0 z-50 bg-blue-500 flex justify-between py-4 px-5 items-center">
+    <nav className="sticky top-0 z-50 border-b-[1px] flex justify-between py-4 px-5 items-center">
       <div id="nav-links" className="[&>a]:nav-link [&>a]:font-light">
-        <span className="text-xl font-semibold text-white mr-3">
-          {"NZKR Comm ✴︎"}
+        <span className="text-xl font-semibold text-zinc-900 mr-3">
+          {"NZKR Comm ⊹ ࣪ ˖"}
         </span>
         <Link href={"/"} className={isActive("/")}>
           {"Home"}
+        </Link>
+        <Link href={"/my-page"} className={isActive("/my-page")}>
+          {"My Page"}
         </Link>
         <Link href={"/community"} className={isActive("/community")}>
           {"Community"}
