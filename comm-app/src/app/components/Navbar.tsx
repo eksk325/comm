@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
+import LanguagePicker from "./LanguagePicker";
 
 function Navbar() {
   const pathName = usePathname();
@@ -11,8 +12,10 @@ function Navbar() {
   const isActive = (path: string) => (pathName === path ? "underline" : "");
 
   return (
-    <nav className="sticky top-0 z-50 border-b-[1px] flex justify-between py-4 px-5 items-center">
-      <div id="nav-links" className="[&>a]:nav-link [&>a]:font-light">
+    <nav
+      className={`sticky top-0 z-50 border-b-[1px] border-zinc-200 flex justify-between py-4 px-5 items-center`}
+    >
+      <div id="nav-links" className="[&>a]:nav-link [&>a]:font-light flex">
         <span className="text-xl font-semibold text-zinc-900 mr-3">
           {"NZKR Comm ⊹ ࣪ ˖"}
         </span>
@@ -42,6 +45,7 @@ function Navbar() {
         <SignedIn>
           <UserButton />
         </SignedIn>
+        <LanguagePicker />
       </div>
     </nav>
   );

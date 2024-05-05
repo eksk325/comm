@@ -9,6 +9,14 @@
 }
 
 @layer components {
+  .flex-center {
+    @apply flex justify-center;
+  }
+
+  .flex-center-col {
+    @apply flex-center flex-col;
+  }
+
   .nav-link {
     @apply mx-1 text-zinc-900 px-3 py-1 rounded-xl;
   }
@@ -19,6 +27,58 @@
 
   .nav-link:hover {
     @apply nav-link-active;
+  }
+
+  .dark-border {
+    @apply border-[1px] border-zinc-500 rounded-sm;
+  }
+
+  .dark-border:focus {
+    outline: none;
+  }
+
+  .focus-blue-border:focus {
+    @apply border-blue-800 transition ease-in duration-500;
+  }
+
+  .container {
+    @apply dark-border flex-center-col p-8 my-10 w-3/5;
+  }
+
+  .grey-button {
+    @apply border-[1px]  bg-zinc-200 dark-border hover:bg-zinc-300 transition ease-in-out duration-300 text-sm w-min px-2 py-1;
+  }
+
+  .community-tag {
+    @apply border-[1px] border-transparent w-20 text-center text-sm py-1;
+  }
+
+  .community-tag:hover {
+    @apply cursor-pointer;
+  }
+
+  .tag-selected {
+    @apply text-zinc-900 transition-colors duration-300;
+  }
+
+  .tag-unselected {
+    @apply text-zinc-400;
+  }
+
+  .tag-unselected:hover {
+    @apply dark-border border-dashed;
+  }
+
+  @media screen and (min-width: 1200px) {
+    .container {
+      @apply w-1/2;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    .container {
+      @apply w-4/5;
+    }
   }
 }
 
@@ -32,4 +92,5 @@
 body {
   user-select: none;
   overflow: hidden;
+  text-underline-offset: 2px;
 }
