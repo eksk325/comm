@@ -13,7 +13,7 @@ function Navbar() {
 
   return (
     <nav
-      className={`sticky top-0 z-50 border-b-[1px] border-zinc-200 flex justify-between py-4 px-5 items-center`}
+      className={`sticky top-0 z-50 border-b-[1px] border-zinc-200 flex justify-between py-4 px-5 items-center bg-white`}
     >
       <div id="nav-links" className="[&>a]:nav-link [&>a]:font-light flex">
         <span className="text-xl font-semibold text-zinc-900 mr-3">

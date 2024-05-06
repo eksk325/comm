@@ -11,6 +11,10 @@ function Page() {
   const [content, setContent] = useState("");
 
   const handleCreatePost = async () => {
+    if (title.trim() === "" || content.trim() === "") {
+      alert("Title and content cannot be empty.");
+      return;
+    }
     try {
       const response = await fetch("/api/community/post", {
         method: "POST",

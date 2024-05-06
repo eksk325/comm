@@ -1,12 +1,22 @@
 export type Post = {
   id: number;
   userId: string;
+  username: string;
   title: string;
   tag: string;
   content: string;
-  comments: number[];
+  comments: string[];
   likes: string[];
-  timestamp: Date;
+  timestamp: string;
+};
+
+export type PostListData = {
+  id: string;
+  title: string;
+  tag: string;
+  timestamp: string;
+  numLikes: number;
+  username: string;
 };
 
 export type PostData = {
@@ -16,10 +26,11 @@ export type PostData = {
 };
 
 export type Comment = {
-  _id: string;
-  userId: string;
+  id: string;
+  username: string;
+  userImg: string;
   postId: string;
   text: string;
   replyingTo: string;
-  timestamp: Date;
+  timestamp: string;
 };

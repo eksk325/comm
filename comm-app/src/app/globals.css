@@ -42,11 +42,11 @@
   }
 
   .container {
-    @apply dark-border flex-center-col p-8 my-10 w-3/5;
+    @apply dark-border flex-center-col p-8 mt-10 w-3/5 mb-28;
   }
 
   .grey-button {
-    @apply border-[1px]  bg-zinc-200 dark-border hover:bg-zinc-300 transition ease-in-out duration-300 text-sm w-min px-2 py-1;
+    @apply border-[1px]  bg-zinc-200 dark-border hover:bg-zinc-300 transition ease-in-out duration-300 text-sm px-2 py-1;
   }
 
   .community-tag {
@@ -67,6 +67,10 @@
 
   .tag-unselected:hover {
     @apply dark-border border-dashed;
+  }
+
+  .profile-img {
+    @apply rounded-full dark-border mr-2;
   }
 
   @media screen and (min-width: 1200px) {
@@ -92,5 +96,6 @@
 body {
   user-select: none;
   overflow: hidden;
+  height: 100vh;
   text-underline-offset: 2px;
 }

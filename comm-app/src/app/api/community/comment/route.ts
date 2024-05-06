@@ -1,9 +1,8 @@
 import { currentUser } from "@clerk/nextjs/server";
-import { NextApiRequest, NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
 import { createClerkSupabaseClient } from "src/app/supabase/page";
 
-export async function POST(req: any) {
+export async function POST(req: NextRequest) {
   const user = await currentUser();
   const supabase = await createClerkSupabaseClient();
 
@@ -13,23 +12,21 @@ export async function POST(req: any) {
 
   if (req.method === "POST") {
     const body = await req.json();
-    const { title, content, tag } = body;
+    const { postId, text, replyingTo } = body;
 
-    const { error } = await supabase.from("community_post").insert([
+    const { error } = await supabase.from("community_comments").insert([
       {
         user_id: user.id,
-        username: user.username,
-        title: title,
-        content: content,
-        tag: tag,
-        likes: [],
+        post_id: postId,
+        text,
+        replying_to: replyingTo,
       },
     ]);
 
     if (error) {
-      return new Response("Error", { status: 500 });
+      return new Response(error.message, { status: 500 });
     }
-    return new Response("Post created successfuly", { status: 200 });
+    return new Response("Comment created successfuly", { status: 200 });
   } else {
     return new Response("Method not allowed", { status: 405 });
   }
@@ -41,17 +38,30 @@ export async function GET(req: NextRequest) {
   const postId: string = req.nextUrl.searchParams.get("postId") || "";
 
   try {
-    const { data, error } = await supabase
+    const { data: postData, error: postError } = await supabase
       .from("community_post")
-      .select()
-      .limit(1)
+      .select("comments")
       .eq("id", postId);
 
-    if (error) {
+    if (postError) {
       throw new Error();
     }
 
-    return NextResponse.json(data, { status: 200 });
+    const { data: commentsData, error: commentsError } = await supabase
+      .from("community_comments")
+      .select()
+      .in("id", postData[0].comments);
+
+    if (commentsError) {
+      throw new Error();
+    }
+
+    commentsData.sort(
+      (a, b) =>
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    );
+
+    return NextResponse.json(commentsData, { status: 200 });
   } catch (err) {
     return NextResponse.json(
       { error: "Internal Server Error" },
