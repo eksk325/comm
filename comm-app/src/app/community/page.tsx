@@ -18,11 +18,9 @@ function Page() {
   const router = useRouter();
 
   useEffect(() => {
-    // Dynamically import the 'ldrs' library
     import("ldrs")
       .then((ldrs) => {
         ldrs.ring2.register();
-        // You can use ldrs.ring2 here
       })
       .catch((error) => console.error("Failed to load ldrs", error));
   }, []);

@@ -6,16 +6,13 @@ import {
   Inter,
 } from "next/font/google";
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, SignedIn } from "@clerk/nextjs";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import { TagProvider } from "./context/TagContext";
 import { UserProvider } from "./context/UserContext";
 import { PostProvider } from "./context/PostContext";
-import {
-  LanguageProvider,
-  useLanguageContext,
-} from "./context/LanguageContext";
+import { LanguageProvider } from "./context/LanguageContext";
 
 // The following import prevents a Font Awesome icon server-side rendering bug,
 // where the icons flash from a very large icon down to a properly sized one:
@@ -63,8 +60,9 @@ export default function RootLayout({
             <LanguageProvider>
               <PostProvider>
                 <TagProvider>
-                  <Navbar />
+                  <div></div>
                   <main className="h-full overflow-y-auto position-relative">
+                    <Navbar />
                     {children}
                   </main>
                 </TagProvider>
