@@ -10,17 +10,22 @@ import { useTagContext } from "../context/TagContext";
 import { useLanguageContext } from "../context/LanguageContext";
 import { websiteText } from "../language/websiteText";
 
-import { ring2 } from "ldrs";
-
 function Page() {
   const [posts, setPosts] = useState<PostListData[] | undefined>();
   const { currentTag, setCurrentTag } = useTagContext();
   const { language } = useLanguageContext();
 
-  ring2.register();
-
   const router = useRouter();
 
+  useEffect(() => {
+    // Dynamically import the 'ldrs' library
+    import("ldrs")
+      .then((ldrs) => {
+        ldrs.ring2.register();
+        // You can use ldrs.ring2 here
+      })
+      .catch((error) => console.error("Failed to load ldrs", error));
+  }, []);
   useEffect(() => {
     setCurrentTag("");
 
@@ -49,7 +54,7 @@ function Page() {
     };
 
     fetchPosts();
-  }, []);
+  }, [setCurrentTag]);
 
   if (posts !== undefined) {
     return (
@@ -58,16 +63,17 @@ function Page() {
           <TagChooser />
           <button
             onClick={() => router.push("/new-post/community")}
-            className="no-border-button w-min whitespace-nowrap self-end mb-4"
+            className="no-border-button w-min whitespace-nowrap self-end mb-4 text-base"
           >
             {`+ ${websiteText.newPost[language]} `}
           </button>
-          {posts.map((p) => {
+          {posts.map((p, i) => {
             if (p.tag === currentTag || currentTag === "") {
               return (
                 <div
+                  key={i}
                   onClick={() => router.push(`/community/${p.id}`)}
-                  className="hover:cursor-pointer hover:text-blue-900 transition-colors duration-300 ease-in mb-1"
+                  className="hover:cursor-pointer hover:text-blue-900 transition-colors duration-300 mb-2"
                 >
                   <div className="flex justify-between items-center">
                     <span>{p.title}</span>
@@ -77,8 +83,7 @@ function Page() {
                         language
                       )})`}</span>
                       <div className="min-w-8 text-right">
-                        <span className="text-rose-500">{"♥"}</span>
-
+                        <span className="text-rose-500 pr-1">{"♥"}</span>
                         <span>{p.numLikes}</span>
                       </div>
                     </div>

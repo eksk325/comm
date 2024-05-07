@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClerkSupabaseClient } from "src/app/supabase/page";
+import { createClerkSupabaseClient } from "src/app/supabase/clerkSupabaseClient";
 
 export async function GET(req: NextRequest) {
   const supabase = await createClerkSupabaseClient();

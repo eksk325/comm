@@ -42,7 +42,7 @@
   }
 
   .container {
-    @apply dark-border flex-center-col p-8 mt-10 w-3/5 mb-28;
+    @apply dark-border flex-center-col p-8 mt-10 w-3/5 mb-28 min-w-[350px];
   }
 
   .grey-button {

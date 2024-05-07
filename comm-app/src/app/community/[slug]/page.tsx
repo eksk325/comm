@@ -65,7 +65,7 @@ function Page({ params }: { params: { slug: number } }) {
     if (user !== undefined) {
       fetchPost();
     }
-  }, [postReloadTrigger, user]);
+  }, [postReloadTrigger, user, params.slug]);
 
   const handleLikeClick = async () => {
     if (user === null) {

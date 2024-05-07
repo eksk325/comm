@@ -69,4 +69,12 @@ export const websiteText: { [key: string]: Translation } = {
     EN: "Submit",
     KR: "등록",
   },
+  myPosts: {
+    EN: "My Posts",
+    KR: "내 게시물",
+  },
+  construction: {
+    EN: "This page is currently under construction",
+    KR: "이 페이지는 현재 공사중 입니다",
+  },
 };

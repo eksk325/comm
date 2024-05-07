@@ -3,12 +3,12 @@
 import React, { useEffect, useState } from "react";
 import { Comment } from "../types/types";
 import { useUserContext } from "../context/UserContext";
-import { usePostContext } from "../context/PostContext";
 import getTimeAgo from "../helpers/getTimeAgo";
-import { RedirectToSignIn, SignedIn, useUser } from "@clerk/nextjs";
-import { useRouter, usePathname } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 import { useLanguageContext } from "../context/LanguageContext";
 import { websiteText } from "../language/websiteText";
+import Image from "next/image";
 
 function CommentSection({ postId }: { postId: number }) {
   const { userImg } = useUserContext();
@@ -61,7 +61,7 @@ function CommentSection({ postId }: { postId: number }) {
     };
 
     fetchComments();
-  }, [reloadTrigger]);
+  }, [reloadTrigger, postId]);
 
   const handleSubmitComment = async () => {
     try {
@@ -94,10 +94,11 @@ function CommentSection({ postId }: { postId: number }) {
       <div>
         <div className="flex w-full items-start mt-4">
           {user === null ? null : (
-            <img
+            <Image
               src={userImg}
-              width={"32px"}
-              height={"32px"}
+              alt={"Current user's profile image"}
+              width={32}
+              height={32}
               className="profile-img"
             />
           )}
@@ -134,10 +135,11 @@ function CommentSection({ postId }: { postId: number }) {
         </div>
         {finalComments.map((c, i) => (
           <div key={i} className="flex my-6 items-start text-sm">
-            <img
+            <Image
               src={c.userImg}
-              width="32px"
-              height="32px"
+              alt="Comment user's profile picture"
+              width={32}
+              height={32}
               className="profile-img"
             />
             <div>

@@ -47,7 +47,7 @@ function getTimeAgo(timestamp: string, language: string) {
     } else if (timeDiff < 1209600000) {
       // 14 days in milliseconds
       const days = Math.floor(timeDiff / 86400000);
-      return days + ` day${days !== 1 ? "s" : ""} ago`;
+      return days + `일 전`;
     } else {
       return formattedDate;
     }

@@ -1,7 +1,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { NextApiRequest, NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
-import { createClerkSupabaseClient } from "src/app/supabase/page";
+import { createClerkSupabaseClient } from "src/app/supabase/clerkSupabaseClient";
 
 export async function POST(req: any) {
   const user = await currentUser();
