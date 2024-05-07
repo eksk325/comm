@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import TagChooser from "src/app/components/TagChooser";
 import { useTagContext } from "src/app/context/TagContext";
 import { useLanguageContext } from "src/app/context/LanguageContext";
-import { websiteText } from "src/app/language/websiteText";
 
 function Page() {
   const { currentTag } = useTagContext();
@@ -15,7 +14,7 @@ function Page() {
 
   const router = useRouter();
 
-  const { language } = useLanguageContext();
+  const { language, websiteText } = useLanguageContext();
 
   const handleCreatePost = async () => {
     if (title.trim() === "" || content.trim() === "") {

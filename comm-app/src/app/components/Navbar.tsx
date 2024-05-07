@@ -5,7 +5,6 @@ import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import LanguagePicker from "./LanguagePicker";
-import { websiteText } from "../language/websiteText";
 import { useLanguageContext } from "../context/LanguageContext";
 
 function Navbar() {
@@ -14,7 +13,7 @@ function Navbar() {
   // Helper function to determine if the link is active
   const isActive = (path: string) => (pathName === path ? "underline" : "");
 
-  const { language, setLanguage } = useLanguageContext();
+  const { language, setLanguage, websiteText } = useLanguageContext();
 
   useEffect(() => {
     const userLanguage = window.localStorage.getItem("userLanguage");

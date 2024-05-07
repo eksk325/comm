@@ -1,13 +1,13 @@
 "use client";
 import { useUser } from "@clerk/nextjs";
 import React from "react";
-import { websiteText } from "../language/websiteText";
+
 import { useLanguageContext } from "../context/LanguageContext";
 import Image from "next/image";
 
 function Page() {
   const { user } = useUser();
-  const { language } = useLanguageContext();
+  const { language, websiteText } = useLanguageContext();
 
   if (user) {
     return (

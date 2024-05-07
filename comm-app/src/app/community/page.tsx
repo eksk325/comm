@@ -8,12 +8,11 @@ import { useRouter } from "next/navigation";
 import { useTagContext } from "../context/TagContext";
 
 import { useLanguageContext } from "../context/LanguageContext";
-import { websiteText } from "../language/websiteText";
 
 function Page() {
   const [posts, setPosts] = useState<PostListData[] | undefined>();
   const { currentTag, setCurrentTag } = useTagContext();
-  const { language } = useLanguageContext();
+  const { language, websiteText } = useLanguageContext();
 
   const router = useRouter();
 

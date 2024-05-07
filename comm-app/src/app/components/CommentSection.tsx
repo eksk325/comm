@@ -7,7 +7,6 @@ import getTimeAgo from "../helpers/getTimeAgo";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useLanguageContext } from "../context/LanguageContext";
-import { websiteText } from "../language/websiteText";
 import Image from "next/image";
 
 function CommentSection({ postId }: { postId: number }) {
@@ -21,7 +20,7 @@ function CommentSection({ postId }: { postId: number }) {
 
   const { user } = useUser();
   const router = useRouter();
-  const { language } = useLanguageContext();
+  const { language, websiteText } = useLanguageContext();
 
   useEffect(() => {
     const fetchComments = async () => {

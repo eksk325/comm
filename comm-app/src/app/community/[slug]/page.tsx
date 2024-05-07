@@ -7,7 +7,6 @@ import { usePostContext } from "src/app/context/PostContext";
 import getTimeAgo from "src/app/helpers/getTimeAgo";
 import { Post } from "src/app/types/types";
 import { useLanguageContext } from "src/app/context/LanguageContext";
-import { websiteText } from "src/app/language/websiteText";
 
 const notoJP = Noto_Sans_JP({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
@@ -23,7 +22,7 @@ function Page({ params }: { params: { slug: number } }) {
 
   const { user } = useUser();
 
-  const { language } = useLanguageContext();
+  const { language, websiteText } = useLanguageContext();
 
   useEffect(() => {
     const userId = user ? user.id : "";

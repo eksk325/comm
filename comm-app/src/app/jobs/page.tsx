@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
 import { useLanguageContext } from "../context/LanguageContext";
-import { websiteText } from "../language/websiteText";
 import Image from "next/image";
 
 function Page() {
-  const { language } = useLanguageContext();
+  const { language, websiteText } = useLanguageContext();
   return (
     <div className="flex-center-col items-center mt-20">
       <Image
