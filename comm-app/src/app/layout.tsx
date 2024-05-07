@@ -12,6 +12,14 @@ import Navbar from "./components/Navbar";
 import { TagProvider } from "./context/TagContext";
 import { UserProvider } from "./context/UserContext";
 import { PostProvider } from "./context/PostContext";
+import { LanguageProvider } from "./context/LanguageContext";
+
+// The following import prevents a Font Awesome icon server-side rendering bug,
+// where the icons flash from a very large icon down to a properly sized one:
+import "@fortawesome/fontawesome-svg-core/styles.css";
+// Prevent fontawesome from adding its CSS since we did it manually above:
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false; /* eslint-disable import/first */
 
 const notoSansKR = Noto_Sans_KR({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
@@ -35,17 +43,25 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          src="https://kit.fontawesome.com/5f425be481.js"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
       <body>
         <ClerkProvider>
           <UserProvider>
-            <PostProvider>
-              <TagProvider>
-                <Navbar />
-                <main className="h-full overflow-y-auto position-relative ">
-                  {children}
-                </main>
-              </TagProvider>
-            </PostProvider>
+            <LanguageProvider>
+              <PostProvider>
+                <TagProvider>
+                  <Navbar />
+                  <main className="h-full overflow-y-auto position-relative">
+                    {children}
+                  </main>
+                </TagProvider>
+              </PostProvider>
+            </LanguageProvider>
           </UserProvider>
         </ClerkProvider>
       </body>

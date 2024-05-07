@@ -7,6 +7,8 @@ import { usePostContext } from "../context/PostContext";
 import getTimeAgo from "../helpers/getTimeAgo";
 import { RedirectToSignIn, SignedIn, useUser } from "@clerk/nextjs";
 import { useRouter, usePathname } from "next/navigation";
+import { useLanguageContext } from "../context/LanguageContext";
+import { websiteText } from "../language/websiteText";
 
 function CommentSection({ postId }: { postId: number }) {
   const { userImg } = useUserContext();
@@ -19,7 +21,7 @@ function CommentSection({ postId }: { postId: number }) {
 
   const { user } = useUser();
   const router = useRouter();
-  const pathname = usePathname();
+  const { language } = useLanguageContext();
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -114,7 +116,7 @@ function CommentSection({ postId }: { postId: number }) {
             ) : (
               <div className="flex flex-col">
                 <textarea
-                  placeholder={"댓글 입력..."}
+                  placeholder={websiteText.enterComment[language]}
                   spellCheck={false}
                   className="resize-none w-full focus:outline-none p-2 text-sm grow"
                   onChange={(e) => setCurrentComment(e.target.value)}
@@ -124,7 +126,7 @@ function CommentSection({ postId }: { postId: number }) {
                   className={`grey-button self-end mr-2 my-2 w-auto`}
                   onClick={() => handleSubmitComment()}
                 >
-                  {"등록"}
+                  {websiteText.submit[language]}
                 </button>
               </div>
             )}
@@ -142,7 +144,8 @@ function CommentSection({ postId }: { postId: number }) {
               <div className="flex items-center">
                 <span className="font-medium">{c.username}</span>
                 <span className="ml-1 text-xs">{`(${getTimeAgo(
-                  c.timestamp
+                  c.timestamp,
+                  language
                 )})`}</span>
               </div>
               <span>{c.text}</span>

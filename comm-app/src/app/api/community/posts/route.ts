@@ -11,6 +11,11 @@ export async function GET(req: NextRequest) {
       throw new Error();
     }
 
+    data.sort(
+      (a, b) =>
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    );
+
     return NextResponse.json(data, { status: 200 });
   } catch (err) {
     return NextResponse.json(

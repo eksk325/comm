@@ -1,14 +1,21 @@
 "use client";
 import { SignedIn } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import TagChooser from "src/app/components/TagChooser";
 import { useTagContext } from "src/app/context/TagContext";
+import { useLanguageContext } from "src/app/context/LanguageContext";
+import { websiteText } from "src/app/language/websiteText";
 
 function Page() {
   const { currentTag } = useTagContext();
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+
+  const router = useRouter();
+
+  const { language } = useLanguageContext();
 
   const handleCreatePost = async () => {
     if (title.trim() === "" || content.trim() === "") {
@@ -30,6 +37,8 @@ function Page() {
 
       if (!response.ok) {
         console.error("Failed to create post!");
+      } else {
+        router.push("/community");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -42,13 +51,13 @@ function Page() {
         <div className="container">
           <TagChooser />
 
-          <label>{"Title"}</label>
+          <label>{websiteText.title[language]}</label>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className="dark-border focus-blue-border p-1 font-normal text-sm"
           ></input>
-          <label className="mt-5">{"Text"}</label>
+          <label className="mt-5">{websiteText.content[language]}</label>
           <textarea
             spellCheck={false}
             value={content}
@@ -59,7 +68,7 @@ function Page() {
             className="grey-button mt-4 self-end"
             onClick={() => handleCreatePost()}
           >
-            {"PUBLISH"}
+            {websiteText.publish[language].toUpperCase()}
           </button>
         </div>
       </div>

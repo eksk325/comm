@@ -61,5 +61,15 @@ export async function POST(req: Request) {
     }
   }
 
+  if (eventType === "user.deleted") {
+    const { error } = await supabase.from("users").delete().eq("id", id);
+
+    if (error) {
+      return new Response("User did not get deleted from supabase", {
+        status: 500,
+      });
+    }
+  }
+
   return new Response("", { status: 200 });
 }

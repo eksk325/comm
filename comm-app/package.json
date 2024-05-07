@@ -10,8 +10,12 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^5.0.6",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@supabase/ssr": "^0.3.0",
     "@supabase/supabase-js": "^2.43.1",
+    "ldrs": "^1.0.1",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",

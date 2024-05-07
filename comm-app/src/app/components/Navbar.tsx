@@ -4,9 +4,12 @@ import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import LanguagePicker from "./LanguagePicker";
+import { websiteText } from "../language/websiteText";
+import { useLanguageContext } from "../context/LanguageContext";
 
 function Navbar() {
   const pathName = usePathname();
+  const { language } = useLanguageContext();
 
   // Helper function to determine if the link is active
   const isActive = (path: string) => (pathName === path ? "underline" : "");
@@ -20,19 +23,19 @@ function Navbar() {
           {"NZKR Comm ⊹ ࣪ ˖"}
         </span>
         <Link href={"/"} className={isActive("/")}>
-          {"Home"}
+          {websiteText.home[language]}
         </Link>
         <Link href={"/my-page"} className={isActive("/my-page")}>
-          {"My Page"}
+          {websiteText.myPage[language]}
         </Link>
         <Link href={"/community"} className={isActive("/community")}>
-          {"Community"}
+          {websiteText.community[language]}
         </Link>
         <Link href={"/jobs"} className={isActive("/jobs")}>
-          {"Jobs"}
+          {websiteText.jobs[language]}
         </Link>
         <Link href={"/market"} className={isActive("/market")}>
-          {"Market"}
+          {websiteText.market[language]}
         </Link>
       </div>
 

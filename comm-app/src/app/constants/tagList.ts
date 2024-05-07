@@ -1,3 +1,3 @@
-const tagList: string[] = ["공부", "음식", "아무거나", "게임", "학교"];
+const tagList: string[] = ["study", "food", "anything", "games", "school"];
 
 export default tagList;

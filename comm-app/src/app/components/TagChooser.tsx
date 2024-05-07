@@ -6,6 +6,10 @@ import { useTagContext } from "../context/TagContext";
 function TagChooser() {
   const { currentTag, setCurrentTag } = useTagContext();
 
+  // useEffect(() => {
+  //   setCurrentTag("");
+  // }, []);
+
   const handleTagSelect = (tag: string) => {
     if (tag === currentTag) {
       setCurrentTag("");
