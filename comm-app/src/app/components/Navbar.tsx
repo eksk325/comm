@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { use, useEffect } from "react";
 import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
@@ -16,9 +16,14 @@ function Navbar() {
   const { language, setLanguage, websiteText } = useLanguageContext();
 
   useEffect(() => {
-    const userLanguage = window.localStorage.getItem("userLanguage");
-
-    userLanguage ? setLanguage(userLanguage) : null;
+    if (typeof window !== "undefined") {
+      const userLanguage = localStorage.getItem("userLanguage");
+      if (userLanguage) {
+        setLanguage(userLanguage);
+      } else if (userLanguage === "") {
+        setLanguage("EN");
+      }
+    }
   }, [setLanguage]);
 
   useEffect(() => {

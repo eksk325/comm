@@ -100,6 +100,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
       KR: "이 페이지는 현재 공사중 입니다",
     },
   };
+
   return (
     <LanguageContext.Provider
       value={{
